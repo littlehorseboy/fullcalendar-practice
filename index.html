@@ -42,6 +42,23 @@
     #calendar > div.fc-view-container > div > table > thead > tr > td > div > table > thead > tr > th.fc-day-header.fc-sat {
       color: #dc3545
     }
+
+    #calendar > div.fc-view-container div.fc-content-skeleton div.fc-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    #calendar > div.fc-view-container div.fc-content-skeleton div.fc-content > .fc-time {
+      display: block;
+      order: 1;
+    }
+
+    #calendar > div.fc-view-container div.fc-content-skeleton div.fc-content > .fc-title {
+      display: block;
+      order: 0;
+      text-align: center;
+    }
   </style>
 </head>
 <body>

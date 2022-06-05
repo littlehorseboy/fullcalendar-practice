@@ -13,6 +13,33 @@ $(function () {
       right: 'next',
     },
     dayNamesShort: ["日", "一", "二", "三", "四", "五", "六"],
+    displayEventTime: true,
+    displayEventEnd: true,
+    viewRender: function (view, element) {
+      // 換月份讀取資料更換 eventSources
+      $('#calendar').fullCalendar('addEventSource', {
+        editable: true,
+        color: 'blue',
+        textColor: 'white',
+        events: [
+          {
+            title: '<span>event1</span><span class="ml-1 badge badge-light">7</span>',
+            start: '2022-06-02T12:30:00',
+            end: '2022-06-02T13:30:00',
+          },
+          {
+            title: 'event2',
+            start: '2022-06-06T12:30:00',
+            end: '2022-06-06T13:30:00'
+          },
+          {
+            title: 'event3',
+            start: '2022-06-12T12:30:00',
+            end: '2022-06-12T13:30:00',
+          }
+        ],
+      });
+    },
     eventSources: [
       {
         editable: true,
@@ -30,15 +57,13 @@ $(function () {
             end: '2022-06-05T13:30:00'
           },
           {
-            title: 'event3',
+            title: '<span>event3</span><span class="ml-1 badge badge-light">7</span>',
             start: '2022-06-09T12:30:00',
             end: '2022-06-09T13:30:00',
           }
         ],
       },
     ],
-    displayEventTime: true,
-    displayEventEnd: true,
     eventClick: function (calEvent, jsEvent, view) {
 
       alert('Event: ' + calEvent.title);
@@ -49,32 +74,12 @@ $(function () {
       $(this).css('border-color', 'red');
 
     },
-    viewRender: function (view, element) {
-      // 換月份讀取資料改變 eventSources
-
-      $('#calendar').fullCalendar('addEventSource', {
-        editable: true,
-        color: 'blue',
-        textColor: 'white',
-        events: [
-          {
-            title: 'event1',
-            start: '2022-06-02T12:30:00',
-            end: '2022-06-02T13:30:00',
-          },
-          {
-            title: 'event2',
-            start: '2022-06-06T12:30:00',
-            end: '2022-06-06T13:30:00'
-          },
-          {
-            title: 'event3',
-            start: '2022-06-12T12:30:00',
-            end: '2022-06-12T13:30:00',
-          }
-        ],
-      });
+    eventRender: function (event, element, view) {
+      var title = element.find('.fc-title');
+      title.html(title.text());
+      console.log('111111');
     },
+    eventRenderWait: 300, // debounce
   });
 
   var calendarPrevBtn = $('#calendar > div.fc-toolbar.fc-header-toolbar > div.fc-left > button');
